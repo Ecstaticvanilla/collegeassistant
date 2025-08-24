@@ -1,0 +1,36 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f3f4f6; /* bg-gray-100 */
+}
+
+/* Custom scrollbar for better aesthetics */
+.timetable-table-body::-webkit-scrollbar {
+    width: 8px;
+}
+.timetable-table-body::-webkit-scrollbar-track {
+    background: #f1f5e0; /* light background for the track */
+    border-radius: 10px;
+}
+.timetable-table-body::-webkit-scrollbar-thumb {
+    background: #cbd5e1; /* slate-300 */
+    border-radius: 10px;
+}
+.timetable-table-body::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8; /* slate-400 */
+}
+
+/* Style for the editable cells in teacher view */
+.editable-cell {
+    background-color: #f8fafc; /* bg-gray-50 */
+    border: 1px solid #e2e8f0; /* border-slate-200 */
+    border-radius: 0.375rem; /* rounded-md */
+    padding: 0.25rem;
+    text-align: center;
+    width: 100%;
+    outline: none;
+    transition: all 0.2s ease-in-out;
+}
+.editable-cell:focus {
+    box-shadow: 0 0 0 2px #3b82f6; /* focus:ring-2 focus:ring-blue-500 */
+    background-color: #ffffff;
+}

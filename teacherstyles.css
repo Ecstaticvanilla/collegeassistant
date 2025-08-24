@@ -1,0 +1,88 @@
+:root {
+    --primary-color: #4361ee;
+    --secondary-color: #3f37c9;
+    --text-color: #2b2d42;
+    --light-gray: #f8f9fa;
+    --dark-gray: #495057;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #e9ecef, #dee2e6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    color: var(--text-color);
+  }
+  
+  .homepage-container {
+    max-width: 1000px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .homepage-header {
+    margin-bottom: 2rem;
+  }
+  
+  .logo {
+    height: 60px;
+    margin-bottom: 1rem;
+  }
+  
+  .homepage-header h1 {
+    font-size: 2rem;
+    color: var(--text-color);
+  }
+  
+  .homepage-header p {
+    color: var(--dark-gray);
+    font-size: 1rem;
+  }
+  
+  .options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  
+  .card {
+    background: white;
+    padding: 2rem 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+    text-decoration: none;
+    color: var(--text-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+  }
+  
+  .card i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+  }
+  
+  .card h2 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .card p {
+    color: var(--dark-gray);
+    font-size: 0.95rem;
+  }
+  
