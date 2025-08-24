@@ -3,37 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Student Portal</title>
+  <title>Portal</title>
   <link rel="stylesheet" href="home.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
   <div class="homepage-container">
     <header class="homepage-header">
-      <img src="logo.png" alt="Logo" class="logo">
-      <h1>Welcome to Student Portal</h1>
-      <p>Select an option below to continue</p>
+      <img src="../logo.png" alt="Logo" class="logo">
+      <h1 id="portal-title">Welcome to Portal</h1>
+      <p id="portal-subtitle">Select an option below to continue</p>
     </header>
 
     <div class="options">
-      <a href="#" class="card">
+      <a href="../attendance/attendance.html" class="card" id="attendance-card">
         <i class="fas fa-calendar-check"></i>
         <h2>Attendance</h2>
-        <p>View and track your attendance records</p>
+        <p id="attendance-description">View and track your attendance records</p>
       </a>
 
-      <a href="#" class="card">
+      <a href="../timetable/timetable.html" class="card" id="timetable-card">
         <i class="fas fa-calendar-alt"></i>
         <h2>Timetable</h2>
-        <p>Check your class schedule and timings</p>
+        <p id="timetable-description">Check your class schedule and timings</p>
       </a>
 
-      <a href="#" class="card">
+      <a href="../grades/grades.html" class="card" id="grades-card">
         <i class="fas fa-file-alt"></i>
         <h2>Grade Sheet</h2>
-        <p>Access your exam results and grades</p>
+        <p id="grades-description">Access your exam results and grades</p>
       </a>
     </div>
   </div>
+
+  <script src="home.js"></script>
 </body>
 </html>

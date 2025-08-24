@@ -11,8 +11,15 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
         return;
     }
 
-    // Redirect to home.html
-    window.location.href = "home.html";
+    // A simple check to determine user role.
+    // In a real application, this would be handled by a secure backend.
+    if (username === "teacher") {
+        window.location.href = "../home/home.html?role=teacher";
+    } else if (username === "student") {
+        window.location.href = "../home/home.html?role=student";
+    } else {
+        alert("Invalid username or password.");
+    }
 });
 
 // Toggle password visibility

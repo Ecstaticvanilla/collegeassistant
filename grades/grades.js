@@ -28,7 +28,6 @@ const gradesData = {
 };
 
 // DOM Elements
-const userRoleSelect = document.getElementById('user-role');
 const teacherView = document.getElementById('teacher-view');
 const studentView = document.getElementById('student-view');
 const subjectSelect = document.getElementById('subject-select');
@@ -41,6 +40,8 @@ const examSections = ['ise', 'mse', 'ese', 'lab_ise', 'lab_ese'];
 
 // Simulating the current student for the student view.
 const currentStudentId = 'student1';
+const urlParams = new URLSearchParams(window.location.search);
+const userRole = urlParams.get('role');
 
 /**
  * Calculates the total grade for a student in a specific subject.
@@ -201,22 +202,17 @@ function renderStudentView() {
     totalGradePercentageEl.textContent = `${overallPercentage.toFixed(2)}%`;
 }
 
-// Event listeners for role and subject selection
-userRoleSelect.addEventListener('change', (e) => {
-    if (e.target.value === 'teacher') {
+// Initial render
+document.addEventListener('DOMContentLoaded', () => {
+    if (userRole === 'teacher') {
         teacherView.classList.remove('hidden');
         studentView.classList.add('hidden');
         renderTeacherView();
     } else {
-        studentView.classList.remove('hidden');
         teacherView.classList.add('hidden');
+        studentView.classList.remove('hidden');
         renderStudentView();
     }
 });
 
 subjectSelect.addEventListener('change', renderTeacherView);
-
-// Initial render
-document.addEventListener('DOMContentLoaded', () => {
-    renderTeacherView();
-});

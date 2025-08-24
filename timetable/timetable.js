@@ -172,7 +172,6 @@ const subjects = {
 };
 
 // DOM Elements
-const userRoleSelect = document.getElementById('user-role');
 const teacherView = document.getElementById('teacher-view');
 const studentView = document.getElementById('student-view');
 const divisionSelect = document.getElementById('division-select');
@@ -185,6 +184,10 @@ const studentTableHeader = document.getElementById('student-table-header');
 const studentNameEl = document.getElementById('student-name');
 const studentDivisionText = document.getElementById('student-division-text');
 const studentBatchText = document.getElementById('student-batch-text');
+
+// Get the user role from the URL query parameter
+const urlParams = new URLSearchParams(window.location.search);
+const userRole = urlParams.get('role');
 
 // Simulating the current student logged in
 const currentStudentId = 'student1';
@@ -301,18 +304,6 @@ function renderStudentView() {
 }
 
 // Event listeners for role and select boxes
-userRoleSelect.addEventListener('change', (e) => {
-    if (e.target.value === 'teacher') {
-        teacherView.classList.remove('hidden');
-        studentView.classList.add('hidden');
-        renderTeacherView();
-    } else {
-        studentView.classList.remove('hidden');
-        teacherView.classList.add('hidden');
-        renderStudentView();
-    }
-});
-
 divisionSelect.addEventListener('change', () => {
     // Dynamically update batches based on division selection
     const division = divisionSelect.value;
@@ -341,5 +332,14 @@ document.addEventListener('DOMContentLoaded', () => {
         option.textContent = `Batch ${batch}`;
         batchSelect.appendChild(option);
     });
-    renderTeacherView();
+    
+    if (userRole === 'teacher') {
+        teacherView.classList.remove('hidden');
+        studentView.classList.add('hidden');
+        renderTeacherView();
+    } else {
+        teacherView.classList.add('hidden');
+        studentView.classList.remove('hidden');
+        renderStudentView();
+    }
 });

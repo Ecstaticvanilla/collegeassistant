@@ -18,20 +18,13 @@
     <!-- Main Container -->
     <div class="mx-auto max-w-6xl bg-white p-6 sm:p-8 rounded-2xl shadow-lg border border-gray-200">
 
-        <!-- Header and User Role Switcher -->
+        <!-- Header -->
         <div class="flex flex-col sm:flex-row justify-between items-center mb-6 border-b pb-4">
             <h1 class="text-3xl font-bold text-gray-800 mb-4 sm:mb-0">Grades Portal</h1>
-            <div class="flex items-center space-x-2">
-                <label for="user-role" class="text-gray-600 font-medium">View as:</label>
-                <select id="user-role" class="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
-                    <option value="teacher">Teacher</option>
-                    <option value="student">Student</option>
-                </select>
-            </div>
         </div>
 
         <!-- Teacher's View -->
-        <div id="teacher-view" class="user-view">
+        <div id="teacher-view" class="user-view hidden">
             <h2 class="text-2xl font-semibold text-gray-700 mb-4">Teacher Dashboard</h2>
             <div class="mb-4 flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-4">
                 <label for="subject-select" class="text-gray-600 font-medium">Select Subject:</label>

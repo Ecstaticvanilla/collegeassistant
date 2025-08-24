@@ -108,7 +108,6 @@ const attendanceData = {
 };
 
 // DOM Elements
-const userRoleSelect = document.getElementById('user-role');
 const teacherView = document.getElementById('teacher-view');
 const studentView = document.getElementById('student-view');
 const subjectSelect = document.getElementById('subject-select');
@@ -123,6 +122,8 @@ const totalClassesInputsContainer = document.getElementById('total-classes-input
 const studentMonthSelect = document.getElementById('student-month-select');
 const months = ['Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 const currentStudentId = 'student1'; // Example student, 'Alice Johnson'
+const urlParams = new URLSearchParams(window.location.search);
+const userRole = urlParams.get('role');
 
 /**
  * Renders the attendance table for the teacher view.
@@ -349,24 +350,28 @@ function renderStudentView() {
 
 
 // Event listeners
-userRoleSelect.addEventListener('change', (e) => {
-    if (e.target.value === 'teacher') {
-        teacherView.classList.remove('hidden');
-        studentView.classList.add('hidden');
-        renderTeacherView();
-    } else {
-        studentView.classList.remove('hidden');
-        teacherView.classList.add('hidden');
-        renderStudentView();
-    }
-});
-
 subjectSelect.addEventListener('change', renderTeacherView);
 activitySelect.addEventListener('change', renderTeacherView);
 divisionSelect.addEventListener('change', renderTeacherView);
 studentMonthSelect.addEventListener('change', renderStudentView);
 
-// Initial render based on default selected role
+// Initial render
 document.addEventListener('DOMContentLoaded', () => {
-    renderTeacherView();
+    // Initial setup of batch options based on default division
+    const initialDivision = divisionSelect.value;
+    const batches = Object.keys(attendanceData[initialDivision]);
+    batches.forEach(batch => {
+        const option = document.createElement('option');
+        option.value = batch;
+        option.textContent = `Batch ${batch}`;
+        divisionSelect.appendChild(option);
+    });
+
+    if (userRole === 'teacher') {
+        teacherView.classList.remove('hidden');
+        renderTeacherView();
+    } else {
+        studentView.classList.remove('hidden');
+        renderStudentView();
+    }
 });
