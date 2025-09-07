@@ -1,8 +1,9 @@
-// Handle form submit and redirect
-document.getElementById("loginForm").addEventListener("submit", function(event) {
-    event.preventDefault(); // prevent default form submission
+// login/script.js
 
-    // Basic validation check
+// Handle form submit and redirect
+document.getElementById("loginForm").addEventListener("submit", async function(event) {
+    event.preventDefault();
+
     const username = document.getElementById("username").value.trim();
     const password = document.getElementById("password").value.trim();
 
@@ -11,14 +12,28 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
         return;
     }
 
-    // A simple check to determine user role.
-    // In a real application, this would be handled by a secure backend.
-    if (username === "teacher") {
-        window.location.href = "../home/home.html?role=teacher";
-    } else if (username === "student") {
-        window.location.href = "../home/home.html?role=student";
-    } else {
-        alert("Invalid username or password.");
+    try {
+        const response = await fetch('http://localhost:3000/api/auth/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, password })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            // Save user info to session storage
+            sessionStorage.setItem('userRole', data.user.role);
+            sessionStorage.setItem('studentId', data.user.student_id);
+
+            // Redirect to the home page with the user's role
+            window.location.href = `../home/home.html?role=${data.user.role}`;
+        } else {
+            alert("Login failed: " + data.message);
+        }
+    } catch (error) {
+        console.error("Login error:", error);
+        alert("Could not connect to the server.");
     }
 });
 
